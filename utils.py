@@ -6,10 +6,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train', action='store_true',
-                    help='resume training from a saved checkpoint')
-parser.add_argument('--eval', action='store_true',
-                    help='run evaluation of the model from a saved checkpoint')
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument("--checkpoint", type=str, help="specify the name of the PyTorch model checkpoint")
+group.add_argument("--train", type=str, help="resume training from a saved checkpoint")
+group.add_argument("--eval", type=str, help="run evaluation of the model from a saved checkpoint")
 opt = parser.parse_args()
 print(vars(opt))
 
@@ -62,7 +62,7 @@ class DiceBCELoss(nn.Module):
         intersection = torch.sum(targets * inputs)
         union = torch.sum(targets) + torch.sum(inputs)
         dice_loss = 1 - (2.0 * intersection + smooth) / (union + smooth)
-        BCE = F.binary_cross_entropy(inputs, targets, reduction='mean')
+        BCE = F.binary_cross_entropy(inputs, targets, reduction="mean")
         Dice_BCE = BCE + dice_loss
 
         return Dice_BCE
@@ -112,6 +112,6 @@ def create_mask(image_size, mask_size):
     for _ in range(8):
         start_h = random.randint(0, image_size[0] - mask_size)
         start_w = random.randint(0, image_size[1] - mask_size)
-        mask[start_h:start_h+mask_size, start_w:start_w+mask_size] = 0
+        mask[start_h : start_h + mask_size, start_w : start_w + mask_size] = 0
 
     return mask
