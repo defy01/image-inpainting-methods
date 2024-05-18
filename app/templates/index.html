@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Inpainting: Interactive Demo</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+      type="text/css"
+    />
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a class="navigation" href="survey">Survey</a>
+      <a href="https://github.com/defy01/image-inpainting-methods"
+        ><img src="../static/github.png" alt="GitHub Logo" class="logo"
+      /></a>
+    </div>
+    <div class="container">
+      <h1>Step one</h1>
+      <h3>
+        Upload your image, the image will be scaled by default.<br />The
+        supported format is either JPG or PNG.
+      </h3>
+      <div id="dropzone" class="dropzone">
+        <div class="dz-message">
+          <img
+            src="static/placeholder.svg"
+            alt="Upload Image"
+            class="placeholder"
+            draggable="false"
+          />
+          Drop files here to upload or click to browse.
+        </div>
+      </div>
+      <div id="canvas-container">
+        <div>
+          <canvas id="image-canvas" width="512" height="512"></canvas>
+          <p style="display: none">Original Image</p>
+        </div>
+      </div>
+
+      <input
+        type="range"
+        class="slider"
+        id="brush-size"
+        min="10"
+        max="60"
+        value="20"
+        style="display: none"
+      />
+
+      <div class="button-container">
+        <button
+          class="change"
+          id="change-image"
+          onclick="changeImage()"
+          style="display: none"
+        >
+          Change Image
+        </button>
+        <button
+          class="change"
+          id="start-over"
+          onclick="returnToImageSelectionStep()"
+          style="display: none"
+        >
+          Start Over
+        </button>
+        <button disabled id="undo" onclick="undoLastStroke()" style="display: none">
+          Undo
+        </button>
+        <button id="next" onclick="startMaskingStep()" style="display: none">
+          Next Step
+        </button>
+        <button id="inpaint" onclick="inpaintImage()" style="display: none">
+          Inpaint Image
+        </button>
+      </div>
+      <div id="spinner" class="loader" style="display: none"></div>
+
+      <input
+        type="file"
+        id="file-input"
+        style="display: none"
+        accept="image/*"
+      />
+    </div>
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>

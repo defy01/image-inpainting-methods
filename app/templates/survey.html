@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Inpainting: Survey</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap"
+    />
+    <script src="http://SortableJS.github.io/Sortable/Sortable.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a class="navigation" href="/">Demo</a>
+      <a href="https://github.com/defy01/image-inpainting-methods"
+        ><img src="../static/github.png" alt="GitHub Logo" class="logo"
+      /></a>
+    </div>
+    <div class="container">
+      <h1>Image Inpainting Survey</h1>
+      <h3>
+        An object or multiple objects have been removed from these images. Your
+        task will be to<br />
+        drag the images to sort them from <strong>best (left)</strong> to
+        <strong>worst (right)</strong> by visual quality.
+      </h3>
+      <div id="survey-container"></div>
+      <button id="confirm-ranking">Confirm Order</button>
+      <button disabled id="next-group" style="display: none">Next</button>
+    </div>
+    <script src="../static/js/survey.js" onload="enableSortable()"></script>
+  </body>
+</html>
